@@ -5,15 +5,13 @@
 import "./index.less";
 import { useEffect } from "react";
 import { connect } from "react-redux";
-import { Circle } from "@/components";
+import { Line } from "@/components";
 
 const Home = props => {
 
 	return (
 		<div className="g-home">
-			<div className="box">
-				<Circle height={100} />
-			</div>
+			<Line />
 		</div>
 	);
 };

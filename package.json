@@ -1,6 +1,6 @@
 {
   "name": "@tntv/charts",
-  "version": "0.2.3",
+  "version": "1.0.0",
   "description": "可视化工程",
   "main": "lib/index.js",
   "scripts": {

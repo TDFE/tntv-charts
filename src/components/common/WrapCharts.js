@@ -9,6 +9,7 @@ import React, { useEffect, useRef, useState } from "react";
 import Echarts from "echarts/lib/echarts";
 // 按需引入公共图表类型，标题，提示信息等
 import "echarts/lib/component/legend";
+import "echarts/lib/component/legendScroll";
 import "echarts/lib/component/tooltip";
 import "echarts/lib/component/title";
 // 默认主题
