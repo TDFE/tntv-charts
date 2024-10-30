@@ -6,17 +6,41 @@
 
 import React, { useEffect, useRef, useState } from "react";
 // 按需加载echarts，注意引入文件的路径
-import Echarts from "echarts/lib/echarts";
-// 按需引入公共图表类型，标题，提示信息等
-import "echarts/lib/component/legend";
-import "echarts/lib/component/legendScroll";
-import "echarts/lib/component/tooltip";
-import "echarts/lib/component/title";
+// import * as Echarts from "echarts/lib/echarts";
+// import * as echarts from "echarts";
+import * as echarts from "echarts/core";
+import { FunnelChart } from "echarts/charts";
+import {
+	TitleComponent,
+	TooltipComponent,
+	GridComponent,
+	LegendComponent,
+	LegendScrollComponent
+} from "echarts/components";
+import { CanvasRenderer } from "echarts/renderers";
 // 默认主题
 import "../Theme/default";
 
-export default props => {
-	const { option = {}, height = 300, theme = "default", geo = {}, geoName = "", getChartInstance } = props;
+// 注册必需的组件
+echarts.use([
+	FunnelChart,
+	TitleComponent,
+	TooltipComponent,
+	GridComponent,
+	LegendComponent,
+	LegendScrollComponent,
+	CanvasRenderer
+]);
+
+export default (props) => {
+	const {
+		option = {},
+		height = 300,
+		theme = "default",
+		geo = {},
+		geoName = "",
+		getChartInstance
+	} = props;
 	const ref = useRef();
 
 	let [myChart, setMyChart] = useState(null);
@@ -26,14 +50,15 @@ export default props => {
 
 	useEffect(() => {
 		if (myChart) {
+			myChart.clear();
 			myChart.dispose();
 		}
 		const { current } = ref;
-		myChart = Echarts.init(current, theme);
+		myChart = echarts.init(current, theme);
 
 		// 注册地图数据
 		if (Object.keys(geo).length > 0) {
-			Echarts.registerMap(geoName, geo);
+			echarts.registerMap(geoName, {geoJSON: geo});
 		}
 
 		myChart.setOption(option, true);
@@ -48,13 +73,11 @@ export default props => {
 		return () => {
 			window.removeEventListener("resize", resize);
 			if (myChart) {
+				myChart.clear();
 				myChart.dispose();
 			}
 		};
 	}, [theme]);
 
-	return (
-		<div ref={ref} style={{ height }}></div>
-	);
+	return <div ref={ref} style={{ height }}></div>;
 };
-

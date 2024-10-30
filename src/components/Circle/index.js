@@ -8,10 +8,17 @@ import React from "react";
 import { merge } from "../common/utils";
 import WrapCharts from "../common/WrapCharts";
 // 按需引入图表类型
-import "echarts/lib/chart/bar";
-import "echarts/lib/component/polar";
-import "echarts/lib/component/angleAxis";
-import "echarts/lib/component/radiusAxis";
+import * as echarts from "echarts/core";
+import { BarChart } from "echarts/charts";
+import {
+	PolarComponent
+} from "echarts/components";
+
+// 注册必需的组件
+echarts.use([
+	BarChart,
+	PolarComponent
+]);
 
 // 内置默认数据
 const defaultOption = {
@@ -32,9 +39,9 @@ const defaultOption = {
 		},
 		data: [60], // 数据
 		itemStyle: {
-			normal: {
-				color: "#f90" // 有数据环的颜色
-			}
+
+			color: "#f90" // 有数据环的颜色
+
 		}
 	}
 };
@@ -78,7 +85,6 @@ export default props => {
 			},
 			axisLine: {
 				show: false
-
 			},
 			axisTick: {
 				show: false
@@ -95,9 +101,9 @@ export default props => {
 			data: [60],
 			coordinateSystem: "polar",
 			itemStyle: {
-				normal: {
-					color: "#f90"
-				}
+
+				color: "#f90"
+
 			}
 		}
 	};

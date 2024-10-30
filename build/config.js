@@ -3,8 +3,7 @@ const PORT = process.env.PORT || 8000;
 
 module.exports = {
 	common: {
-		htmlTemplatePath: path.resolve(__dirname, "../src/index.html"),
-		dllPath: path.resolve(__dirname, "../public/vendor")
+		htmlTemplatePath: path.resolve(__dirname, "../src/index.html")
 	},
 	dev: {
 		hot: true,

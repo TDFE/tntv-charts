@@ -8,8 +8,17 @@ import React from "react";
 import { merge } from "../common/utils";
 import WrapCharts from "../common/WrapCharts";
 // 按需引入图表类型
-import "echarts/lib/chart/line";
-import "echarts/lib/component/dataZoom";
+import * as echarts from "echarts/core";
+import { LineChart } from "echarts/charts";
+import {
+	DataZoomComponent
+} from "echarts/components";
+
+// 注册必需的组件
+echarts.use([
+	LineChart,
+	DataZoomComponent
+]);
 
 // 内置默认数据
 const defaultOption = {

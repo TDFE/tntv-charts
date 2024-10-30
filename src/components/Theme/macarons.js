@@ -1,197 +1,190 @@
-(function (root, factory) {
-    factory(exports, require('echarts/lib/echarts'));
-}(this, function (exports, echarts) {
-    var log = function (msg) {
-        if (typeof console !== 'undefined') {
-            console && console.error && console.error(msg);
-        }
-    };
-    if (!echarts) {
-        log('ECharts is not Loaded');
-        return;
-    }
+(function(root, factory) {
+	factory(exports, require("echarts/lib/echarts"));
+}(this, function(exports, echarts) {
+	var log = function(msg) {
+		if (typeof console !== "undefined") {
+			console && console.error && console.error(msg);
+		}
+	};
+	if (!echarts) {
+		log("ECharts is not Loaded");
+		return;
+	}
 
-    var colorPalette = [
-        '#2ec7c9', '#b6a2de', '#5ab1ef', '#ffb980', '#d87a80',
-        '#8d98b3', '#e5cf0d', '#97b552', '#95706d', '#dc69aa',
-        '#07a2a4', '#9a7fd1', '#588dd5', '#f5994e', '#c05050',
-        '#59678c', '#c9ab00', '#7eb00a', '#6f5553', '#c14089'
-    ];
+	var colorPalette = [
+		"#2ec7c9", "#b6a2de", "#5ab1ef", "#ffb980", "#d87a80",
+		"#8d98b3", "#e5cf0d", "#97b552", "#95706d", "#dc69aa",
+		"#07a2a4", "#9a7fd1", "#588dd5", "#f5994e", "#c05050",
+		"#59678c", "#c9ab00", "#7eb00a", "#6f5553", "#c14089"
+	];
 
+	var theme = {
+		color: colorPalette,
 
-    var theme = {
-        color: colorPalette,
+		title: {
+			left: "center",
+			textStyle: {
+				fontWeight: "normal",
+				color: "#008acd"
+			}
+		},
 
-        title: {
-            left: "center",
-            textStyle: {
-                fontWeight: 'normal',
-                color: '#008acd'
-            }
-        },
+		visualMap: {
+			itemWidth: 15,
+			color: ["#5ab1ef", "#e0ffff"]
+		},
 
-        visualMap: {
-            itemWidth: 15,
-            color: ['#5ab1ef', '#e0ffff']
-        },
+		toolbox: {
+			iconStyle: {
+				borderColor: colorPalette[0]
+			}
+		},
 
-        toolbox: {
-            iconStyle: {
-                normal: {
-                    borderColor: colorPalette[0]
-                }
-            }
-        },
+		tooltip: {
+			backgroundColor: "rgba(50,50,50,0.5)",
+			axisPointer: {
+				type: "line",
+				lineStyle: {
+					color: "#008acd"
+				},
+				crossStyle: {
+					color: "#008acd"
+				},
+				shadowStyle: {
+					color: "rgba(200,200,200,0.2)"
+				}
+			}
+		},
 
-        tooltip: {
-            backgroundColor: 'rgba(50,50,50,0.5)',
-            axisPointer: {
-                type: 'line',
-                lineStyle: {
-                    color: '#008acd'
-                },
-                crossStyle: {
-                    color: '#008acd'
-                },
-                shadowStyle: {
-                    color: 'rgba(200,200,200,0.2)'
-                }
-            }
-        },
+		dataZoom: {
+			dataBackgroundColor: "#efefff",
+			fillerColor: "rgba(182,162,222,0.2)",
+			handleColor: "#008acd"
+		},
 
-        dataZoom: {
-            dataBackgroundColor: '#efefff',
-            fillerColor: 'rgba(182,162,222,0.2)',
-            handleColor: '#008acd'
-        },
+		categoryAxis: {
+			axisLine: {
+				lineStyle: {
+					color: "#008acd"
+				}
+			},
+			splitLine: {
+				lineStyle: {
+					color: ["#eee"]
+				}
+			}
+		},
 
-        grid: {
-            borderColor: '#eee'
-        },
+		valueAxis: {
+			axisLine: {
+				lineStyle: {
+					color: "#008acd"
+				}
+			},
+			splitArea: {
+				show: true,
+				areaStyle: {
+					color: ["rgba(250,250,250,0.1)", "rgba(200,200,200,0.1)"]
+				}
+			},
+			splitLine: {
+				lineStyle: {
+					color: ["#eee"]
+				}
+			}
+		},
 
-        categoryAxis: {
-            axisLine: {
-                lineStyle: {
-                    color: '#008acd'
-                }
-            },
-            splitLine: {
-                lineStyle: {
-                    color: ['#eee']
-                }
-            }
-        },
+		timeline: {
+			lineStyle: {
+				color: "#008acd"
+			},
+			controlStyle: {
+			 	color: "#008acd"
+			},
+			emphasis: {
+				controlStyle: {
+					color: "#008acd"
+				}
+			},
+			symbol: "emptyCircle",
+			symbolSize: 3
+		},
 
-        valueAxis: {
-            axisLine: {
-                lineStyle: {
-                    color: '#008acd'
-                }
-            },
-            splitArea: {
-                show: true,
-                areaStyle: {
-                    color: ['rgba(250,250,250,0.1)', 'rgba(200,200,200,0.1)']
-                }
-            },
-            splitLine: {
-                lineStyle: {
-                    color: ['#eee']
-                }
-            }
-        },
+		line: {
+			smooth: true,
+			symbol: "emptyCircle",
+			symbolSize: 3
+		},
 
-        timeline: {
-            lineStyle: {
-                color: '#008acd'
-            },
-            controlStyle: {
-                normal: { color: '#008acd' },
-                emphasis: { color: '#008acd' }
-            },
-            symbol: 'emptyCircle',
-            symbolSize: 3
-        },
+		candlestick: {
+			itemStyle: {
+				color: "#d87a80",
+				color0: "#2ec7c9",
+				lineStyle: {
+					color: "#d87a80",
+					color0: "#2ec7c9"
+				}
+			}
+		},
 
-        line: {
-            smooth: true,
-            symbol: 'emptyCircle',
-            symbolSize: 3
-        },
+		scatter: {
+			symbol: "circle",
+			symbolSize: 4
+		},
 
-        candlestick: {
-            itemStyle: {
-                normal: {
-                    color: '#d87a80',
-                    color0: '#2ec7c9',
-                    lineStyle: {
-                        color: '#d87a80',
-                        color0: '#2ec7c9'
-                    }
-                }
-            }
-        },
+		map: {
+			label: {
+				textStyle: {
+					color: "#d87a80"
+				}
+			},
+			itemStyle: {
+				borderColor: "#eee",
+				areaColor: "#ddd"
+			},
+			emphasis: {
+				itemStyle: {
+					areaColor: "#fe994e"
+				}
+			}
+		},
 
-        scatter: {
-            symbol: 'circle',
-            symbolSize: 4
-        },
+		graph: {
+			color: colorPalette
+		},
 
-        map: {
-            label: {
-                normal: {
-                    textStyle: {
-                        color: '#d87a80'
-                    }
-                }
-            },
-            itemStyle: {
-                normal: {
-                    borderColor: '#eee',
-                    areaColor: '#ddd'
-                },
-                emphasis: {
-                    areaColor: '#fe994e'
-                }
-            }
-        },
+		gauge: {
+			axisLine: {
+				lineStyle: {
+					color: [[0.2, "#2ec7c9"], [0.8, "#5ab1ef"], [1, "#d87a80"]],
+					width: 10
+				}
+			},
+			axisTick: {
+				splitNumber: 10,
+				length: 15,
+				lineStyle: {
+					color: "auto"
+				}
+			},
+			splitLine: {
+				length: 22,
+				lineStyle: {
+					color: "auto"
+				}
+			},
+			pointer: {
+				width: 5
+			}
+		},
+		grid: {
+			top: 45,
+			left: 30,
+			right: 30,
+			bottom: 10,
+			containLabel: true
+		}
+	};
 
-        graph: {
-            color: colorPalette
-        },
-
-        gauge: {
-            axisLine: {
-                lineStyle: {
-                    color: [[0.2, '#2ec7c9'], [0.8, '#5ab1ef'], [1, '#d87a80']],
-                    width: 10
-                }
-            },
-            axisTick: {
-                splitNumber: 10,
-                length: 15,
-                lineStyle: {
-                    color: 'auto'
-                }
-            },
-            splitLine: {
-                length: 22,
-                lineStyle: {
-                    color: 'auto'
-                }
-            },
-            pointer: {
-                width: 5
-            }
-        },
-        grid: {
-            top: 45,
-            left: 30,
-            right: 30,
-            bottom: 10,
-            containLabel: true
-        },
-    };
-
-    echarts.registerTheme('macarons', theme);
+	echarts.registerTheme("macarons", theme);
 }));

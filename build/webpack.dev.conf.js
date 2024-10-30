@@ -16,7 +16,7 @@ module.exports = merge(baseWebpackConfig, {
 		inline: true,
 		host: config.dev.host,
 		port: config.dev.port,
-		contentBase: [path.join(__dirname, "../dist"), path.join(__dirname, "../public")],
+		contentBase: [path.join(__dirname, "../dist")],
 		open: config.dev.autoOpenBrowser,
 		proxy: config.dev.proxyTable || {},
 		hot: true,
@@ -32,7 +32,6 @@ module.exports = merge(baseWebpackConfig, {
 			template: config.common.htmlTemplatePath,	// 配置html模板的地址
 			inject: true,
 			chunksSortMode: "none",
-			dllPath: "/vendor",
 			publicPath: config.dev.assetsPublicPath
 		})
 	],
