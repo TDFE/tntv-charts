@@ -26,6 +26,7 @@ export default props => {
 
 	useEffect(() => {
 		if (myChart) {
+			myChart.clear();
 			myChart.dispose();
 		}
 		const { current } = ref;
@@ -48,6 +49,7 @@ export default props => {
 		return () => {
 			window.removeEventListener("resize", resize);
 			if (myChart) {
+				myChart.clear();
 				myChart.dispose();
 			}
 		};

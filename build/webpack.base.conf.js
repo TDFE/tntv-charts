@@ -29,10 +29,6 @@ module.exports = {
 		}
 	},
 	plugins: [
-		new webpack.DllReferencePlugin({
-			context: __dirname,
-			manifest: path.resolve(__dirname, "../public/vendor/vendor_manifest.json")
-		}),
 		new webpack.DefinePlugin({
 			"process.env": JSON.stringify(process.env)
 		}),
